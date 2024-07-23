@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct DailyListView: View {
+    @Binding var dailies: [DailyData]
+    @Binding var selectMonth: Int
     
+    // var selectDailies = Dailies.filter({$0.dateMonth == 2})
     
     var body: some View {
-        List (Dailies) { daily in
+        var selectDailies = Dailies.filter({$0.dateMonth == selectMonth})
+        
+        List (selectDailies) { daily in
             VStack {
                 HStack (alignment: .bottom){
                     Text(String(daily.dateDay))
@@ -44,7 +49,8 @@ struct DailyListView: View {
                 .padding(.bottom, 3)
                 
                 Text(daily.comment)
-                    .frame(alignment: .leading)
+                    .padding(.horizontal, 10)
+                    .frame(maxWidth:.infinity, alignment: .leading)
                 
             }
             .frame(width: 340)
@@ -61,6 +67,6 @@ struct DailyListView: View {
     }
 }
 
-#Preview {
-    DailyListView()
-}
+//#Preview {
+//    DailyListView(dailies: Dailies)
+//}

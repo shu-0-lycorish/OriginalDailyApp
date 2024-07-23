@@ -11,6 +11,7 @@ struct EditDailyView: View {
     @Binding var isPresented: Bool
     @State private var selectedIndex = 0
     @State var inputComment = ""
+    @Binding var dailies: [DailyData]
     
     var body: some View {
         
@@ -82,8 +83,8 @@ struct EditDailyView: View {
                 Spacer()
                 
                 Button(action: {
-                    Dailies.append(DailyData(dateYear: year, dateMonth: month, dateDay: day, week: weekdayText, eval: selectedIndex, comment: inputComment))
-                    print(Dailies)
+                    dailies.append(DailyData(dateYear: year, dateMonth: month, dateDay: day, week: weekdayText, eval: selectedIndex, comment: inputComment))
+                    print(dailies)
                     print("Save")
                     isPresented = false
                 }) {
@@ -103,6 +104,6 @@ struct EditDailyView: View {
     }
 }
 
-#Preview {
-    EditDailyView(isPresented: Binding.constant(false))
-}
+//#Preview {
+//    EditDailyView(isPresented: Binding.constant(false))
+//}

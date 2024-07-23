@@ -9,10 +9,12 @@ import SwiftUI
 
 struct EditButtonView: View {
     @State var isShow: Bool = false
+    @Binding var dailies: [DailyData]
     
     var body: some View {
         Button(action: {
             print("Edit")
+            
             isShow = true
         }) {
             Image(systemName: "pencil")
@@ -24,13 +26,13 @@ struct EditButtonView: View {
                 .clipShape(Circle())
         }
         .sheet(isPresented: $isShow) {
-            EditDailyView(isPresented: $isShow)
+            EditDailyView(isPresented: $isShow, dailies: $dailies)
                 .presentationDetents([.medium])
                 .presentationDragIndicator(.visible)
         }
     }
 }
 
-#Preview {
-    EditButtonView()
-}
+//#Preview {
+//    EditButtonView()
+//}
